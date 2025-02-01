@@ -3,7 +3,6 @@ const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
 
-// Bot configuration constants
 const token = process.env.BOT_TOKEN;
 const CHANNEL_USERNAME = '@YousifCoding';
 const DEVELOPER_BOT = '@VNN3Bot';
@@ -75,11 +74,33 @@ bot.onText(/\/contact/, (msg) => {
     );
 });
 
+// '/help' command handler
+bot.onText(/\/help/, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(
+        chatId,
+        "📌 Available Commands:\n\n" +
+        "🔹 /start - Welcome message and basic instructions\n" +
+        "🔹 /random - Get a random image (requires channel subscription)\n" +
+        "🔹 /contact - Get developer contact information\n" +
+        "🔹 /help - Show this help message\n\n" +
+        "📱 How to use in private chat:\n" +
+        "Simply send any of the above commands\n\n" +
+        "👥 How to use in groups:\n" +
+        "1. Add '@' and bot username after commands (e.g., /random" + BOT_USERNAME + ")\n" +
+        "2. The bot only responds when:\n" +
+        "   • You mention it using " + BOT_USERNAME + "\n" +
+        "   • You reply to one of its messages\n\n" +
+        "⭐️ Requirements:\n" +
+        "You must be subscribed to " + CHANNEL_USERNAME + " to use the /random command"
+    );
+});
+
 // Handle all other messages
 bot.on('message', (msg) => {
     if (!msg.text) return;
     
-    const commands = ['/random', '/start', '/contact'];
+    const commands = ['/random', '/start', '/contact', '/help'];
     const isCommand = commands.some(cmd => 
         msg.text === cmd || msg.text.startsWith(`${cmd}@`)
     );
