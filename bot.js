@@ -38,13 +38,13 @@ bot.onText(/\/random/, async (msg) => {
         if (!subscribed) {
             return bot.sendMessage(
                 chatId,
-                `Please subscribe to ${CHANNEL_USERNAME} channel first to use this bot!`
+                `لازم تشترك بالقناة ${CHANNEL_USERNAME} قبل ما تگدر تستخدم البوت!`
             );
         }
 
         const imagePath = getRandomImage();
         await bot.sendPhoto(chatId, imagePath);
-        await bot.sendMessage(chatId, 'Hope you liked the image! Send /random to get another one 😊');
+        await bot.sendMessage(chatId, 'مبروك تعبئة كرشك 😁، دز /random اذا تريد بعد وحدة!');
     } catch (error) {
         bot.sendMessage(chatId, 'Sorry, I could not process your request at this time.');
         console.error('Error:', error);
@@ -56,11 +56,11 @@ bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
     bot.sendMessage(
         chatId,
-        "👋 Hi! Welcome to Random Images Bot!\n\n" +
-        "To use this bot, you need to:\n" +
-        `1. Subscribe to ${CHANNEL_USERNAME} channel\n` +
-        "2. Send /random to get random images\n\n" +
-        "Enjoy! 😊"
+        "هلو هلو 👋\n\n" +
+        "حتى تگدر تستخدم البوت لازم:\n" +
+        `1. تشترك بالقناة ${CHANNEL_USERNAME}\n` +
+        "2. تدز /random حتى تحصل صور عشوائية\n\n" +
+        "مبروك تعبئة كرشك 😁"
     );
 });
 
@@ -69,8 +69,8 @@ bot.onText(/\/contact/, (msg) => {
     const chatId = msg.chat.id;
     bot.sendMessage(
         chatId,
-        `You can contact the developer via his bot ${DEVELOPER_BOT} (send me new messages to add to this bot)\n\n` +
-        `This is my coding channel where I post my recent projects and updates ${CHANNEL_USERNAME}`
+        `تگدر تتواصل وياي عن طريق البوت هذا ${DEVELOPER_BOT}، دزلي اي استفسارات او افكار للبوت هذا حتى اضيفهم، واذا عندك صور تم تعبئة الكرش تحب اضيفهم للبوت هم دزلي!\n\n` +
+        `وهاي قناة البرمجة مالتي ${CHANNEL_USERNAME} انشر بيها المشاريع الي اسويهم وآخر التحديثات عليهم`
     );
 });
 
@@ -79,20 +79,20 @@ bot.onText(/\/help/, (msg) => {
     const chatId = msg.chat.id;
     bot.sendMessage(
         chatId,
-        "📌 Available Commands:\n\n" +
-        "🔹 /start - Welcome message and basic instructions\n" +
-        "🔹 /random - Get a random image (requires channel subscription)\n" +
-        "🔹 /contact - Get developer contact information\n" +
-        "🔹 /help - Show this help message\n\n" +
-        "📱 How to use in private chat:\n" +
-        "Simply send any of the above commands\n\n" +
-        "👥 How to use in groups:\n" +
-        "1. Add '@' and bot username after commands (e.g., /random" + BOT_USERNAME + ")\n" +
-        "2. The bot only responds when:\n" +
-        "   • You mention it using " + BOT_USERNAME + "\n" +
-        "   • You reply to one of its messages\n\n" +
-        "⭐️ Requirements:\n" +
-        "You must be subscribed to " + CHANNEL_USERNAME + " to use the /random command"
+        "الاوامر المتوفرة: 📌\n\n" +
+        "🔹 /start - رسالة الترحيب والتعليمات الاساسية\n" +
+        "🔹 /random - يطلعلك صورة عشوائية (لازم تشترك بالقناة)\n" +
+        "🔹 /contact - معلومات التواصل وياي\n" +
+        "🔹 /help - يطلعلك هاي الرسالة\n\n" +
+        "📱 شلون تستخدم البوت بالخاص:\n" +
+        "بس دز اي امر من الاوامر فوك\n\n" +
+        "👥 شلون تستخدم البوت بالگروبات:\n" +
+        "1. حط '@' و يوزر البوت بعد الامر (مثال: /random" + BOT_USERNAME + ")\n" +
+        "2. البوت يرد بس اذا:\n" +
+        "   • تسوي منشن " + BOT_USERNAME + "\n" +
+        "   • ترد على رسالة من رسائل البوت\n\n" +
+        "⭐️ الشروط:\n" +
+        "لازم تشترك بقناة " + CHANNEL_USERNAME + " حتى تگدر تستخدم امر /random"
     );
 });
 
@@ -120,6 +120,6 @@ bot.on('message', (msg) => {
     
     bot.sendMessage(
         chatId,
-        `This bot isn't for chatting, get in touch with the developer on ${DEVELOPER_BOT} or get a random image by sending /random`
+        `هذا البوت مو للسوالف، تگدر تتواصل وياي على ${DEVELOPER_BOT} او دز /random حتى تحصل على صورة`
     );
 });
