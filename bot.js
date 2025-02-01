@@ -24,6 +24,7 @@ function getRandomImage() {
     return path.join(imagesDir, randomImage);
 }
 
+// '/random' command handler
 bot.onText(/\/random/, async (msg) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
@@ -34,14 +35,52 @@ bot.onText(/\/random/, async (msg) => {
         if (!subscribed) {
             return bot.sendMessage(
                 chatId,
-                'Please subscribe to @YousifCoding channel first to use this bot!'
+                // TODO: Replace the channel username with the coding channel
+                'Please subscribe to @YousifDiaries channel first to use this bot!'
             );
         }
 
         const imagePath = getRandomImage();
-        bot.sendPhoto(chatId, imagePath);
+        await bot.sendPhoto(chatId, imagePath);
+        await bot.sendMessage(chatId, 'Hope you liked the image! Send /random to get another one 😊');
     } catch (error) {
         bot.sendMessage(chatId, 'Sorry, I could not process your request at this time.');
         console.error('Error:', error);
     }
+});
+
+// '/start' command handler
+bot.onText(/\/start/, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(
+        chatId,
+        "👋 Hi! Welcome to Random Images Bot!\n\n" +
+        "To use this bot, you need to:\n" +
+        // TODO: Replace the channel username with the coding channel
+        "1. Subscribe to @YousifDiaries channel\n" +
+        "2. Send /random to get random images\n\n" +
+        "Enjoy! 😊"
+    );
+});
+
+// '/contact' command handler
+bot.onText(/\/contact/, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(
+        chatId,
+        "You can contact the developer via his bot @VNN3Bot (send me new messages to add to this bot)\n\n" +
+        "This is my coding channel where I post my recent projects and updates @YousifCoding"
+    );
+});
+
+// Handle all other messages
+bot.on('message', (msg) => {
+    // Skip if message is any of the commands
+    if (msg.text === '/random' || msg.text === '/start' || msg.text === '/contact') return;
+    
+    const chatId = msg.chat.id;
+    bot.sendMessage(
+        chatId,
+        "This bot isn't for chatting, get in touch with the developer on @VNN3Bot or get a random image by sending /random"
+    );
 });
