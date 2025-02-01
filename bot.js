@@ -75,10 +75,27 @@ bot.onText(/\/contact/, (msg) => {
 
 // Handle all other messages
 bot.on('message', (msg) => {
-    // Skip if message is any of the commands
-    if (msg.text === '/random' || msg.text === '/start' || msg.text === '/contact') return;
+    if (!msg.text) return;
     
+    const commands = ['/random', '/start', '/contact'];
+    const isCommand = commands.some(cmd => 
+        msg.text === cmd || msg.text.startsWith(`${cmd}@`)
+    );
+    
+    if (isCommand) return;
+
     const chatId = msg.chat.id;
+    
+    // Check if message is in a group
+    if (msg.chat.type === 'group' || msg.chat.type === 'supergroup') {
+        // Only respond if bot is mentioned or message is reply to bot's message
+        // TODO: Replace the bot username with the actual bot username
+        const isBotMentioned = msg.text.includes('@DemoVNBot');
+        const isReplyToBot = msg.reply_to_message && msg.reply_to_message.from.is_bot;
+        
+        if (!isBotMentioned && !isReplyToBot) return;
+    }
+    
     bot.sendMessage(
         chatId,
         "This bot isn't for chatting, get in touch with the developer on @VNN3Bot or get a random image by sending /random"
