@@ -6,7 +6,7 @@ const path = require('path');
 const token = process.env.BOT_TOKEN;
 const CHANNEL_USERNAME = '@YousifCoding';
 const DEVELOPER_BOT = '@VNN3Bot';
-const BOT_USERNAME = '@DemoVNBot'; // TODO: this should be the username of the bot
+const BOT_USERNAME = '@VNTummyBot'; // TODO: this should be the username of the bot
 
 const bot = new TelegramBot(token, { polling: true });
 
