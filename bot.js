@@ -117,9 +117,4 @@ bot.on('message', (msg) => {
         
         if (!isBotMentioned && !isReplyToBot) return;
     }
-    
-    bot.sendMessage(
-        chatId,
-        `هذا البوت مو للسوالف، تگدر تتواصل وياي على ${DEVELOPER_BOT} او دز /random حتى تحصل على صورة`
-    );
 });
